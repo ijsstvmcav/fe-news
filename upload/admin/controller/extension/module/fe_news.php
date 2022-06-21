@@ -49,20 +49,17 @@ class ControllerExtensionModuleFeNews extends Controller {
 
     public function handleInformationModelAdd(&$route, &$args, &$output) {
         $information_id = $output;
+        $add_to_news = ($args[0]['fe_add_to_information_news'] ?? false) === 'on' ? true : false;
+        $this->handleInformation($information_id, $add_to_news);
     }
 
     public function handleInformationModelEdit(&$route, &$args, &$output) {
-        echo "<pre>";
-        var_dump($route);
-        var_dump($args);
-        var_dump($output);
-        echo "</pre>";
-        die();
+        $information_id = $args[0];
+        $add_to_news = ($args[1]['fe_add_to_information_news'] ?? false) === 'on' ? true : false;
+        $this->handleInformation($information_id, $add_to_news);
     }
 
-    public function handleInformation($information_id) {
+    public function handleInformation($information_id, $add_to_news) {
     }
-
-
 
 }
