@@ -39,7 +39,14 @@ class ControllerExtensionModuleFeNews extends Controller {
     }
 
     public function addCheckForInformation(&$route, &$args, &$output) {
-        $content = $this->load->view('extension/module/fe_news_add_check_for_information');
+        $this->load->model('extension/module/fe_news');
+        $information_id = $this->request->get['information_id'] ?? null;
+        $result_information_news = $this->model_extension_module_fe_news->getById($information_id);
+        $is_checked = $result_information_news ? true : false;
+        $content = $this->load->view(
+            'extension/module/fe_news_add_check_for_information',
+            ['is_checked' => $is_checked]
+        );
 
         // Matches and includes $content before </header>
         $pattern = '/(.*)(<\/header>)(.*)/';
@@ -60,6 +67,12 @@ class ControllerExtensionModuleFeNews extends Controller {
     }
 
     public function handleInformation($information_id, $add_to_news) {
+        $this->load->model('extension/module/fe_news');
+        if ($add_to_news) {
+            $this->model_extension_module_fe_news->add($information_id);
+        } else {
+            $this->model_extension_module_fe_news->delete($information_id);
+        }
     }
 
 }

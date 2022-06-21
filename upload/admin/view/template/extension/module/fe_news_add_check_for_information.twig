@@ -1,5 +1,6 @@
 <script>
     $(document).ready(() => {
+        let checked = {% if is_checked %}'checked'{% else %}''{% endif %};
         let inputForm = `
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="fe_add_to_information_news">
@@ -10,7 +11,9 @@
                         type="checkbox"
                         class="form-check-input"
                         name="fe_add_to_information_news"
-                        id="fe_add_to_information_news">
+                        id="fe_add_to_information_news"
+                        ${checked}
+                        >
                 </div>
             </div>
         `;
