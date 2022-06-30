@@ -6,10 +6,10 @@
             <div class="card my-2">
                 <div class="card-header">{{ information.title }}</div>
                 <div class="card-body">
-                    {{ information.description|striptags|slice(0, 100) }}
+                    {{ information.description|striptags|slice(0, 300) }}
                 </div>
                 <div class="card-footer">
-                    <a href="{{ link_information }}{{ information.information_id }}">Открыть</a>
+                    <a href="{{ link_information }}{{ information.information_id }}">Прочитать больше</a>
                 </div>
             </div>
         {% endfor %}
